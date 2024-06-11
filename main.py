@@ -1,15 +1,18 @@
-import sys
+import click
 
 from xrd_analysis import XRDanalysis
 from xrd_data import XRDdata
 import numpy as np
 
+@click.command()
+@click.version_option("0.1.0", prog_name="scca")
+@click.argument("file", type=str)
+@click.argument("wavelength", type=float)
+@click.argument("multiplier", type=int)
+def do_analysis(file, wavelength, multiplier):
+    sample = XRDdata(file, file)
+    XRDanalysis.display_analysis(sample, wavelength, multiplier)
+    XRDanalysis.plot(sample, 'blue')
+
 if __name__ == '__main__':
-    arguments = sys.argv
-    if len(arguments) == 4:
-        sample = XRDdata(str(arguments[1]), str(arguments[1]))
-        XRDanalysis.display_analysis(sample, float(arguments[2]), int(arguments[3]))
-        XRDanalysis.plot(sample, 'blue')
-    else:
-        print("usage: python main.py [xrd_data.path] [wavelength] [normal_multiplier]")
-        pass
+    do_analysis()

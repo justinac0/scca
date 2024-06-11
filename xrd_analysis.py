@@ -30,8 +30,8 @@ class XRDanalysis:
         return (d_spacing * math.sqrt(h**2 + k**2 + l**2))
 
     @staticmethod
-    def get_interplanar_spacing(n: int, wave_length: float, theta_deg: float):
-        return (n * wave_length) / (2 * XRDanalysis.get_sin_theta(theta_deg))
+    def get_interplanar_spacing(n: int, wavelength: float, theta_deg: float):
+        return (n * wavelength) / (2 * XRDanalysis.get_sin_theta(theta_deg))
 
     @staticmethod
     def get_braggs_angle(two_theta: float):
